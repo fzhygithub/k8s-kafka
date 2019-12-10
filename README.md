@@ -37,14 +37,14 @@ kubectl  create -f kafka.yaml
 ```
 部署在kafka这个namesapce里面。
 测试zk：
-kubectl exec -it zk-0 -- zkServer.sh status
-kubectl exec -it zk-0 -- zkCli.sh create /hello world
+kubectl exec -it -n kafka zk-0 -- zkServer.sh status
+kubectl exec -it -n kafka zk-0 -- zkCli.sh create /hello world
 kubectl delete -f zk.yaml 
 kubectl apply -f zk.yaml
-kubectl exec -it zk-0 -- zkCli.sh get /hello
+kubectl exec -it -n kafka zk-0 -- zkCli.sh get /hello
 
 测试kafka：
-kubectl exec -it kafka-0 -- bash 
+kubectl exec -it -n kafka kafka-0 -- bash 
 
 >kafka-topics.sh --create \
 --topic test \
@@ -56,7 +56,7 @@ kubectl exec -it kafka-0 -- bash
 
 >kafka-console-consumer.sh --topic test --bootstrap-server localhost:9092
 
-kubectl exec -it kafka-1 -- bash
+kubectl exec -it -n kafka kafka-1 -- bash
 
 >kafka-console-producer.sh --topic test --broker-list localhost:9092
 随便输入一些东西：hello 
@@ -72,9 +72,9 @@ kubectl exec -it kafka-1 -- bash
 
 ```
 zk:
-zk-0.zk-hs.kafka.svc.cluster.local
-zk-1.zk-hs.kafka.svc.cluster.local
-zk-2.zk-hs.kafka.svc.cluster.local 
+zk-0.zk.kafka.svc.cluster.local
+zk-1.zk.kafka.svc.cluster.local
+zk-2.zk.kafka.svc.cluster.local 
 
 zk-port:
 2181
