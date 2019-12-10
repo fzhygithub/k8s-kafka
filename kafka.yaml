@@ -44,6 +44,12 @@ spec:
       nodeSelector:
           travis.io/schedule-only: "kafka"
       tolerations:
+###on the master Schedule###
+      - key: "node-role.kubernetes.io/master"
+        operator: "Equal"
+        value: ""
+        effect: "NoSchedule"
+###on the master Schedule###
       - key: "travis.io/schedule-only"
         operator: "Equal"
         value: "kafka"
