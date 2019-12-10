@@ -72,9 +72,9 @@ kubectl exec -it -n kafka kafka-1 -- bash
 
 ```
 zk:
-zk-0.zk.kafka.svc.cluster.local
-zk-1.zk.kafka.svc.cluster.local
-zk-2.zk.kafka.svc.cluster.local 
+zk-0.zk-hs.kafka.svc.cluster.local
+zk-1.zk-hs.kafka.svc.cluster.local
+zk-2.zk-hs.kafka.svc.cluster.local
 
 zk-port:
 2181
